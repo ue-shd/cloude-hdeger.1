@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>タスク管理 & 提案システム</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>タスク管理 <span class="accent">&</span> 提案システム</h1>
+      <div class="stats" id="stats"></div>
+    </header>
+
+    <main class="main">
+      <!-- Left column: task form + list -->
+      <section class="task-section">
+        <div class="card">
+          <h2>新しいタスク</h2>
+          <form id="task-form">
+            <input type="text" id="title" placeholder="タスクタイトル *" required />
+            <textarea id="description" placeholder="説明（任意）" rows="2"></textarea>
+            <div class="row">
+              <select id="priority">
+                <option value="low">低</option>
+                <option value="medium" selected>中</option>
+                <option value="high">高</option>
+              </select>
+              <input type="text" id="category" placeholder="カテゴリ" />
+              <input type="date" id="due_date" />
+            </div>
+            <button type="submit" class="btn btn-primary">追加</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="list-header">
+            <h2>タスク一覧</h2>
+            <div class="filters">
+              <button class="filter-btn active" data-filter="all">全て</button>
+              <button class="filter-btn" data-filter="pending">未完了</button>
+              <button class="filter-btn" data-filter="completed">完了済み</button>
+            </div>
+          </div>
+          <div id="task-list"></div>
+        </div>
+      </section>
+
+      <!-- Right column: suggestions -->
+      <section class="suggest-section">
+        <div class="card suggest-card">
+          <h2>AI タスク提案</h2>
+          <textarea id="context" placeholder="状況やコンテキストを入力（任意）&#10;例: 来週プレゼンがあります" rows="3"></textarea>
+          <button class="btn btn-suggest" id="suggest-btn">
+            <span class="icon">✦</span> 提案を生成
+          </button>
+          <div id="suggestions"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
