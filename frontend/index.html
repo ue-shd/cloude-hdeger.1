@@ -13,6 +13,9 @@
       <div class="stats" id="stats"></div>
     </header>
 
+    <!-- Progress dashboard -->
+    <div class="dashboard" id="dashboard"></div>
+
     <main class="main">
       <!-- Left column: task form + list -->
       <section class="task-section">
@@ -41,8 +44,18 @@
               <button class="filter-btn active" data-filter="all">全て</button>
               <button class="filter-btn" data-filter="pending">未完了</button>
               <button class="filter-btn" data-filter="completed">完了済み</button>
+              <button class="filter-btn" data-filter="overdue">期限切れ</button>
             </div>
           </div>
+
+          <!-- Search + category filter -->
+          <div class="search-row">
+            <input type="text" id="search" placeholder="🔍 タスクを検索..." />
+            <select id="cat-filter">
+              <option value="">全カテゴリ</option>
+            </select>
+          </div>
+
           <div id="task-list"></div>
         </div>
       </section>
@@ -59,6 +72,30 @@
         </div>
       </section>
     </main>
+  </div>
+
+  <!-- Edit modal -->
+  <div class="modal-overlay" id="modal-overlay" style="display:none">
+    <div class="modal">
+      <h2>タスクを編集</h2>
+      <form id="edit-form">
+        <input type="text" id="edit-title" placeholder="タスクタイトル *" required />
+        <textarea id="edit-description" placeholder="説明（任意）" rows="2"></textarea>
+        <div class="row">
+          <select id="edit-priority">
+            <option value="low">低</option>
+            <option value="medium">中</option>
+            <option value="high">高</option>
+          </select>
+          <input type="text" id="edit-category" placeholder="カテゴリ" />
+          <input type="date" id="edit-due_date" />
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="modal-cancel">キャンセル</button>
+          <button type="submit" class="btn btn-primary">保存</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <script src="/static/app.js"></script>
