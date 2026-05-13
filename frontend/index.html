@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>タスク管理 & 提案システム</title>
+  <meta name="theme-color" content="#0f1117" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
@@ -16,21 +19,27 @@
     <!-- Progress dashboard -->
     <div class="dashboard" id="dashboard"></div>
 
+    <!-- Mobile tab bar -->
+    <div class="tab-bar" id="tab-bar">
+      <button class="tab-btn active" data-tab="tasks">📋 タスク</button>
+      <button class="tab-btn" data-tab="suggest">✦ 提案</button>
+    </div>
+
     <main class="main">
       <!-- Left column: task form + list -->
-      <section class="task-section">
+      <section class="task-section" id="tab-tasks">
         <div class="card">
           <h2>新しいタスク</h2>
           <form id="task-form">
-            <input type="text" id="title" placeholder="タスクタイトル *" required />
+            <input type="text" id="title" placeholder="タスクタイトル *" required autocomplete="off" />
             <textarea id="description" placeholder="説明（任意）" rows="2"></textarea>
-            <div class="row">
+            <div class="row row-wrap">
               <select id="priority">
                 <option value="low">低</option>
                 <option value="medium" selected>中</option>
                 <option value="high">高</option>
               </select>
-              <input type="text" id="category" placeholder="カテゴリ" />
+              <input type="text" id="category" placeholder="カテゴリ" autocomplete="off" />
               <input type="date" id="due_date" />
             </div>
             <button type="submit" class="btn btn-primary">追加</button>
@@ -61,7 +70,7 @@
       </section>
 
       <!-- Right column: suggestions -->
-      <section class="suggest-section">
+      <section class="suggest-section" id="tab-suggest">
         <div class="card suggest-card">
           <h2>AI タスク提案</h2>
           <textarea id="context" placeholder="状況やコンテキストを入力（任意）&#10;例: 来週プレゼンがあります" rows="3"></textarea>
@@ -79,15 +88,15 @@
     <div class="modal">
       <h2>タスクを編集</h2>
       <form id="edit-form">
-        <input type="text" id="edit-title" placeholder="タスクタイトル *" required />
+        <input type="text" id="edit-title" placeholder="タスクタイトル *" required autocomplete="off" />
         <textarea id="edit-description" placeholder="説明（任意）" rows="2"></textarea>
-        <div class="row">
+        <div class="row row-wrap">
           <select id="edit-priority">
             <option value="low">低</option>
             <option value="medium">中</option>
             <option value="high">高</option>
           </select>
-          <input type="text" id="edit-category" placeholder="カテゴリ" />
+          <input type="text" id="edit-category" placeholder="カテゴリ" autocomplete="off" />
           <input type="date" id="edit-due_date" />
         </div>
         <div class="modal-actions">

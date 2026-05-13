@@ -348,6 +348,28 @@ function esc(str) {
     .replace(/"/g, "&quot;");
 }
 
+// ── Mobile tab bar ────────────────────────────────────────────────────────
+
+function initTabs() {
+  const tasksSec = document.getElementById("tab-tasks");
+  const suggestSec = document.getElementById("tab-suggest");
+
+  function setTab(name) {
+    document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+    document.querySelector(`.tab-btn[data-tab="${name}"]`)?.classList.add("active");
+    tasksSec.classList.toggle("tab-active", name === "tasks");
+    suggestSec.classList.toggle("tab-active", name === "suggest");
+  }
+
+  document.querySelectorAll(".tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => setTab(btn.dataset.tab));
+  });
+
+  // Default: show tasks tab on mobile
+  setTab("tasks");
+}
+
 // ── Init ──────────────────────────────────────────────────────────────────
 
+initTabs();
 fetchTasks();
